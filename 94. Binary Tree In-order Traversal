@@ -24,3 +24,20 @@ def inorderTraversal(self, root):
         node = stack.pop()
         res.append(node.val)
         root = node.right
+  
+ class Solution:
+    def inorderTraversal(self, root):
+        res, stack = [], []
+        while True:
+            if root is not None:
+                stack.append(root)
+                root = root.left
+            else:
+                if len(stack)>0:
+                    root = stack.pop()
+                    res.append(root.val)
+                    root = root.right
+                else:
+                    return res
+        return res
+                    
