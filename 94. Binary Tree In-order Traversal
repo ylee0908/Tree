@@ -13,31 +13,15 @@ def helper(self, root, res):
         self.helper(root.right, res)
  
 # iteratively       
-def inorderTraversal(self, root):
-    res, stack = [], []
-    while True:
-        while root:
-            stack.append(root)
-            root = root.left
-        if not stack:
-            return res
-        node = stack.pop()
-        res.append(node.val)
-        root = node.right
-  
- class Solution:
+lass Solution:
     def inorderTraversal(self, root):
         res, stack = [], []
-        while True:
-            if root is not None:
-                stack.append(root)
-                root = root.left
-            else:
-                if len(stack)>0:
-                    root = stack.pop()
-                    res.append(root.val)
-                    root = root.right
-                else:
-                    return res
+        cur = root
+        while cur or stack:
+          while cur: # travel to each node's left child, till reach the left leaf
+            stack.append(cur)
+            cur = cur.left
+          cur = stack.pop() # this node has no left child
+          res.append(cur.val) # so let's append the node value 
+          cur = cur.right # visit its right child --> if it has left child ? append left and left.val, otherwise append node.val, then visit right child again... cur = node.right
         return res
-                    
