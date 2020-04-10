@@ -1,25 +1,5 @@
 226. Invert Binary Tree
 Easy
-
-Share
-Invert a binary tree.
-
-Example:
-
-Input:
-
-     4
-   /   \
-  2     7
- / \   / \
-1   3 6   9
-Output:
-
-     4
-   /   \
-  7     2
- / \   / \
-9   6 3   1
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, x):
@@ -35,13 +15,9 @@ class Solution:
             root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
         return root
     
-    
-class Solution(object):
-    def invertTree(self, root):
-        """
-        :type root: TreeNode
-        :rtype: TreeNode
-        """
+   
+    def invertTree_stack(self, root):
+        
         stack = []
         stack.append(root)
         while stack:
@@ -50,4 +26,16 @@ class Solution(object):
                 node.left, node.right = node.right, node.left
                 stack.append(node.left)
                 stack.append(node.right)
+        return root
+        
+    def invertTree_queue(self, root):
+        
+        queue = collections.deque()
+        queue.append(root)
+        while queue:
+            node = queue.pop()
+            if node: 
+                node.left, node.right = node.right, node.left
+                queue.append(node.left)
+                queue.append(node.right)
         return root
