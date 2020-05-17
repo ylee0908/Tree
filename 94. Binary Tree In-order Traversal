@@ -1,5 +1,17 @@
 94. Binary Tree Inorder Traversal
 
+def inorderTraversal(self, root: TreeNode) -> List[int]:
+        res = []
+        self.helper(root, res)
+        return res
+    
+    def helper(self, root, traversal):
+        if root:
+            traversal = self.helper(root.left, traversal)
+            traversal.append(root.val)
+            traversal = self.helper(root.right, traversal)
+        return traversal
+        
 # recursively
 def inorder(self, root):
     return self.inorder(root.left) + [root.val] + self.inorder(root.right) if root else []
