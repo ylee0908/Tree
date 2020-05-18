@@ -9,17 +9,19 @@ from collections import deque
 
 class Solution:
 	def levelOrder(self, root):
-		if not root: return []
-		queue, res = deque([root]), []
+		if not root: return None
+        
+		queue = [root]
+		res = []
 
 		while queue:
-			cur_level, size = [], len(queue)
-			for i in range(size):
-				node = queue.popleft()
-				if node.left:
-					queue.append(node.left)
-				if node.right:
-					queue.append(node.right)
-				cur_level.append(node.val)
-			res.append(cur_level)
+		    level = []
+		    for i in range(len(queue)):
+			cur = queue.pop(0)
+			if cur.left:
+			    queue.append(cur.left)
+			if cur.right:
+			    queue.append(cur.right)
+			level.append(cur.val)
+		    res.append(level)
 		return res
