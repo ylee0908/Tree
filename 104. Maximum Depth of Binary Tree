@@ -20,17 +20,16 @@ class TreeNode:
 class Solution:
     def maxDepth(self, root: TreeNode) -> int:
         depth = 0
-        level = [root] if root else []
+        queue = [root]
         
-        while level:
+        while queue:
             depth += 1
-            queue = []
-            for el in level:
-                if el.left:
-                    queue.append(el.left)
-                if el.right:
-                    queue.append(el.right)
-            level = queue
+            for i in range(len(queue)):
+              cur = queue.pop(0)
+              if cur.left:
+                queue.append(cur.left)
+              if cur.right:
+                queue.append(cur.right)
         return depth
         
      def maxDepth_recursive(self, root):
